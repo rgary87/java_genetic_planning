@@ -3,188 +3,337 @@
  */
 package fr.rgary.genome;
 
+import fr.rgary.genome.enums.DaysOfWeek;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 
 /**
  * Class Day.
  */
-public abstract class Day {
-    protected List<Hour> hours;
-    protected int dayIdx;
-    protected int hoursCount;
+public class Day {
 
-    public Day(final Day that) {
-        this.hours = new ArrayList<Hour>(15);
-        for (Hour hour : that.hours) {
-            Hour nhour = new Hour(hour.getSlots().size());
+    public int hoursCount;
+    public DaysOfWeek dayOfWeek;
+    protected List<Hour> hours = new ArrayList<>();
 
+    public Day(final DaysOfWeek dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+        Hour hour0 = new Hour(0, null);
+        Hour hour1 = new Hour(1, hour0);
+        Hour hour2 = new Hour(2, hour1);
+        Hour hour3 = new Hour(3, hour2);
+        Hour hour4 = new Hour(4, hour3);
+        Hour hour5 = new Hour(5, hour4);
+        Hour hour6 = new Hour(6, hour5);
+        Hour hour7 = new Hour(7, hour6);
+        Hour hour8 = new Hour(8, hour7);
+        Hour hour9 = new Hour(9, hour8);
+        Hour hour10 = new Hour(10, hour9);
+        Hour hour11 = new Hour(11, hour10);
+        Hour hour12 = new Hour(12, hour11);
+        Hour hour13 = new Hour(13, hour12);
+        Hour hour14 = new Hour(14, hour13);
+        Hour hour15 = new Hour(15, hour14);
+        Hour hour16 = new Hour(16, hour15);
+        switch (dayOfWeek) {
+            case MONDAY:
+                hour0.initSlots(1);
+                hour1.initSlots(1);
+                hour2.initSlots(2);
+                hour3.initSlots(2);
+                hour4.initSlots(2);
+                hour5.initSlots(2);
+                hour6.initSlots(2);
+                hour7.initSlots(2);
+                hour8.initSlots(2);
+                hour9.initSlots(2);
+                hour10.initSlots(2);
+                hour11.initSlots(3);
+                hour12.initSlots(3);
+                hour13.initSlots(3);
+                hour14.initSlots(2);
+                hour15.initSlots(2);
+                hour16.initSlots(2);
+                this.hours = new ArrayList<>(Arrays.asList(hour0, hour1, hour2, hour3, hour4, hour5, hour6, hour7, hour8, hour9, hour10, hour11, hour12, hour13, hour14, hour15, hour16));
+                break;
+            case TUESDAY:
+                hour0.initSlots(1);
+                hour1.initSlots(1);
+                hour2.initSlots(2);
+                hour3.initSlots(2);
+                hour4.initSlots(2);
+                hour5.initSlots(2);
+                hour6.initSlots(2);
+                hour7.initSlots(2);
+                hour8.initSlots(2);
+                hour9.initSlots(2);
+                hour10.initSlots(2);
+                hour11.initSlots(2);
+                hour12.initSlots(2);
+                hour13.initSlots(2);
+                hour14.initSlots(2);
+                hour15.initSlots(2);
+                hour16.initSlots(2);
+                break;
+            case WEDNESDAY:
+                hour0.initSlots(1);
+                hour1.initSlots(1);
+                hour2.initSlots(2);
+                hour3.initSlots(3);
+                hour4.initSlots(3);
+                hour5.initSlots(3);
+                hour6.initSlots(2);
+                hour7.initSlots(2);
+                hour8.initSlots(2);
+                hour9.initSlots(2);
+                hour10.initSlots(2);
+                hour11.initSlots(2);
+                hour12.initSlots(2);
+                hour13.initSlots(2);
+                hour14.initSlots(2);
+                hour15.initSlots(2);
+                hour16.initSlots(2);
+                break;
+            case THURSDAY:
+                hour0.initSlots(1);
+                hour1.initSlots(1);
+                hour2.initSlots(2);
+                hour3.initSlots(2);
+                hour4.initSlots(2);
+                hour5.initSlots(2);
+                hour6.initSlots(2);
+                hour7.initSlots(2);
+                hour8.initSlots(2);
+                hour9.initSlots(3);
+                hour10.initSlots(3);
+                hour11.initSlots(3);
+                hour12.initSlots(3);
+                hour13.initSlots(3);
+                hour14.initSlots(3);
+                hour15.initSlots(2);
+                hour16.initSlots(2);
+                break;
+            case FRIDAY:
+                hour0.initSlots(1);
+                hour1.initSlots(1);
+                hour2.initSlots(2);
+                hour3.initSlots(2);
+                hour4.initSlots(2);
+                hour5.initSlots(2);
+                hour6.initSlots(2);
+                hour7.initSlots(2);
+                hour8.initSlots(2);
+                hour9.initSlots(3);
+                hour10.initSlots(3);
+                hour11.initSlots(3);
+                hour12.initSlots(3);
+                hour13.initSlots(3);
+                hour14.initSlots(3);
+                hour15.initSlots(2);
+                hour16.initSlots(2);
+                break;
+            case SATURDAY:
+                hour0.initSlots(1);
+                hour1.initSlots(2);
+                hour2.initSlots(3);
+                hour3.initSlots(4);
+                hour4.initSlots(4);
+                hour5.initSlots(4);
+                hour6.initSlots(4);
+                hour7.initSlots(4);
+                hour8.initSlots(4);
+                hour9.initSlots(4);
+                hour10.initSlots(4);
+                hour11.initSlots(4);
+                hour12.initSlots(4);
+                hour13.initSlots(4);
+                hour14.initSlots(3);
+                hour15.initSlots(3);
+                hour16.initSlots(3);
+                break;
+            case SUNDAY:
+            default:
+                hour0.initSlots(1);
+                hour1.initSlots(2);
+                hour2.initSlots(3);
+                hour3.initSlots(4);
+                hour4.initSlots(4);
+                hour5.initSlots(4);
+                hour6.initSlots(4);
+                hour7.initSlots(4);
+                hour8.initSlots(4);
+                hour9.initSlots(3);
+                hour10.initSlots(3);
+                hour11.initSlots(3);
+                hour12.initSlots(3);
+                hour13.initSlots(3);
+                hour14.initSlots(2);
+                hour15.initSlots(2);
+                hour16.initSlots(2);
+        }
+        this.hours = new ArrayList<>(Arrays.asList(hour0, hour1, hour2, hour3, hour4, hour5, hour6, hour7, hour8, hour9, hour10, hour11, hour12, hour13, hour14, hour15, hour16));
+    }
+
+    public static boolean workerIsAssignedToHour(Worker pWorker, Hour pHour) {
+        for (final Slot slot : pHour.slots) {
+            if (slot.worker.equals(pWorker)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int getHoursCountBetweenDays(final Hour currentDayHour, final Hour prevDayHour) {
+        if (prevDayHour == null || currentDayHour == null) {
+            return Integer.MAX_VALUE;
+        }
+        return currentDayHour.idx + 7 + (16 - prevDayHour.idx);
+    }
+
+    public static Hour getFirstHourForWorker(final Day pDay, final Worker pWorker) {
+        for (final Hour hour : pDay.hours) {
+            for (final Slot slot : hour.slots) {
+                if (slot.worker.equals(pWorker)) {
+                    return hour;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static Hour getLastHourForWorker(final Day pDay, final Worker pWorker) {
+        ListIterator li = pDay.hours.listIterator(pDay.hours.size());
+        while (li.hasPrevious()) {
+            Hour hour = (Hour) li.previous();
+            for (final Slot slot : hour.slots) {
+                if (slot.worker.equals(pWorker)) {
+                    return hour;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Day copyMe(final Day that) {
+        Day day = new Day(that.dayOfWeek);
+        day.hours = new ArrayList<>(15);
+        Hour prevHour = null;
+        for (final Hour hour : that.hours) {
+            Hour nhour = new Hour(hour.idx, hour.slots.size(), prevHour);
+            prevHour = nhour;
+            for (final Slot slot : hour.slots) {
+                nhour.slots.add(new Slot(slot));
+            }
+        }
+        day.hoursCount = that.hoursCount;
+        return day;
+    }
+
+    public Slot hasAnyHourSlotRemaining() {
+        for (final Hour hour : this.hours) {
+            for (final Slot slot : hour.slots) {
+                if (slot.worker == null) {
+                    return slot;
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean checkHourCountPerWorker(final List<Worker> pWorkers) {
+        Map<Worker, Integer> workerHourCount = new HashMap<>();
+        for (final Worker worker : pWorkers) {
+            workerHourCount.put(worker, 0);
+        }
+        for (final Hour hour : this.hours) {
+            for (Slot slot : hour.slots) {
+                if (slot.worker != null) {
+                    int count = workerHourCount.get(slot.worker) + 1;
+                    workerHourCount.replace(slot.worker, count);
+                }
+            }
+        }
+        for (Map.Entry<Worker, Integer> entries : workerHourCount.entrySet()) {
+            if (entries.getValue() > 12) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Slot hourHasOpenSlotForWorker(final Hour hour, final Worker worker) {
+        Slot result = null;
+        for (final Slot slot : hour.slots) {
+            if (slot.worker == null) {
+                result = slot;
+            } else if (slot.worker.equals(worker)) {
+                return null;
+            }
+        }
+        return result;
+    }
+
+    public boolean setWorkerRecursively(final Hour startHour, final Worker pWorker, int minContinuousHours) {
+        return this.setWorkerRecursively(startHour, pWorker, minContinuousHours, 9, 0);
+    }
+
+    public boolean setWorkerRecursively(final Hour startHour, final Worker worker, int minContinuousHours, int maxContinuousHours, int recursed) {
+        if (recursed == maxContinuousHours) {
+            return true;
+        }
+        if (worker.remainingHours < 1 && minContinuousHours < 1) {
+            return true;
+        } else if (worker.remainingHours < 1) {
+            return false;
+        }
+
+        Slot slot = this.hourHasOpenSlotForWorker(startHour, worker);
+        if (slot != null) {
+            slot.worker = worker;
+            worker.remainingHours--;
+            if (!setWorkerRecursively(startHour.nextHour, worker, minContinuousHours - 1, maxContinuousHours, recursed + 1)) {
+                slot.worker = null;
+                worker.remainingHours++;
+                return false;
+            } else {
+                return true;
+            }
+        } else if (minContinuousHours < 1) {
+            return true;
+        } else {
+            return false;
         }
     }
 
-    public Day() {
-    }
+    /*
+    def recurs_set_worker(self, hour_start_idx: int, worker: Worker, min_continuous_hours: int, recursed: int = 0, max_continuous_hours: int = 9):
+        if recursed == max_continuous_hours:
+            return True
+        if worker.remaining_hours < 1 and min_continuous_hours < 1:
+            return True
+        elif worker.remaining_hours < 1:
+            return False
 
-    public class Monday extends Day {
-        public Monday() {
-            this.hours = new ArrayList<Hour>(Arrays.asList(
-                    new Hour(1),
-                    new Hour(1),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2)
-            ));
-        }
-    }
-    public class Tuesday extends Day {
-        public Tuesday() {
-            this.hours = new ArrayList<Hour>(Arrays.asList(
-                    new Hour(1),
-                    new Hour(1),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2)
-            ));
-        }
-    }
-    public class Wednesday extends Day {
-        public Wednesday() {
-            this.hours = new ArrayList<Hour>(Arrays.asList(
-                    new Hour(1),
-                    new Hour(1),
-                    new Hour(2),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2)
-            ));
-        }
-    }
-    public class Thursday extends Day {
-        public Thursday() {
-            this.hours = new ArrayList<Hour>(Arrays.asList(
-                    new Hour(1),
-                    new Hour(1),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(2),
-                    new Hour(2)
-            ));
-        }
-    }
-    public class Friday extends Day {
-        public Friday() {
-            this.hours = new ArrayList<Hour>(Arrays.asList(
-                    new Hour(1),
-                    new Hour(1),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(2),
-                    new Hour(2)
-            ));
-        }
-    }
-    public class Saturday extends Day {
-        public Saturday() {
-            this.hours = new ArrayList<Hour>(Arrays.asList(
-                    new Hour(1),
-                    new Hour(2),
-                    new Hour(3),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3)
-            ));
-        }
-    }
-    public class Sunday extends Day {
-        public Sunday() {
-            this.hours = new ArrayList<Hour>(Arrays.asList(
-                    new Hour(1),
-                    new Hour(2),
-                    new Hour(3),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(4),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(3),
-                    new Hour(2),
-                    new Hour(2),
-                    new Hour(2)
-            ));
-        }
-    }
+        slot_idx = self.hour_has_open_slot_for_worker(hour_start_idx, worker)
+        if slot_idx != -1:
+            self.hours[hour_start_idx][slot_idx] = worker.name
+            worker.remaining_hours -= 1
+            if not self.recurs_set_worker(hour_start_idx + 1, worker, min_continuous_hours - 1, recursed=recursed+1):
+                # print(f"Reset hours slot {hour_start_idx:3} | {slot_idx} to None")
+                self.hours[hour_start_idx][slot_idx] = None
+                worker.remaining_hours += 1
+                return False
+            else:
+                # print(f"{hour_start_idx:3} | {slot_idx} | {worker.name}")
+                return True
+        elif min_continuous_hours < 1:
+            return True
+        else:
+            return False
+     */
 }
