@@ -20,6 +20,23 @@ public class Slot {
     }
 
     public boolean equals(final Slot that) {
+        if (that == null) {
+            return false;
+        }
+        if (that.worker == null && this.worker != null) {
+            return false;
+        }
+        if (this.worker == null && that.worker != null) {
+            return false;
+        }
+        if (this.worker == null && that.worker  == null) {
+            return true;
+        }
         return this.worker.name.equals(that.worker.name);
+    }
+
+    @Override
+    public String toString() {
+        return worker!= null ? worker.name : "NULL";
     }
 }

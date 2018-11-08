@@ -36,6 +36,7 @@ public class Generator {
             Worker worker = week.getWorkerWithMostRemainingHours();
             Slot openSlot = week.hasAnyDayAnyHourSlotRemaining();
             List<Worker> exceptionWorker = new ArrayList<>();
+            Slot prevSlot = openSlot;
             while (worker != null && worker.remainingHours >= minContinuousHours && openSlot != null) {
                 if (!openSlot.hour.day.setWorkerRecursively(openSlot.hour, worker, minContinuousHours)) {
                     exceptionWorker.add(worker);
@@ -44,6 +45,10 @@ public class Generator {
                     worker = week.getWorkerWithMostRemainingHours();
                 }
                 openSlot = week.hasAnyDayAnyHourSlotRemaining();
+                if (!prevSlot.equals(openSlot)) {
+                    exceptionWorker = new ArrayList<>();
+                    prevSlot = openSlot;
+                }
             }
         }
     }

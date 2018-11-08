@@ -38,13 +38,13 @@ public class Week {
                 new Worker("Julie", 25)
         ));
         this.days = new ArrayList<>(Arrays.asList(
-                new Day(MONDAY),
-                new Day(TUESDAY),
-                new Day(WEDNESDAY),
-                new Day(THURSDAY),
-                new Day(FRIDAY),
-                new Day(SATURDAY),
-                new Day(SUNDAY)
+                new Day(MONDAY, this),
+                new Day(TUESDAY, this),
+                new Day(WEDNESDAY, this),
+                new Day(THURSDAY, this),
+                new Day(FRIDAY, this),
+                new Day(SATURDAY, this),
+                new Day(SUNDAY, this)
         ));
     }
 
@@ -129,17 +129,19 @@ public class Week {
         return this.workers.get(randomNum);
     }
 
-    public Worker getBestWorkerByFitness(Day day, int hourIdx) {
+    public Worker getBestWorkerByFitness(Day day, final Hour hourToManipulate) {
         ArrayList<WorkerFitnessResult> results = new ArrayList<>(this.workers.size());
         for (final Worker worker : this.workers) {
             WorkerFitnessResult workerResult = new WorkerFitnessResult(worker);
             results.add(workerResult);
-            if (Day.workerIsAssignedToHour(worker, (Hour) day.hours.get(hourIdx))) {
+            if (Day.workerIsAssignedToHour(worker, hourToManipulate)) {
                 continue;
             }
             boolean stopCountBefore = false;
-            for (int i = hourIdx - 1; i > 0; i--) {
-                if (Day.workerIsAssignedToHour(worker, (Hour) day.hours.get(i))) {
+            Hour tmpHour = hourToManipulate;
+            while (tmpHour.prevHour != null) {
+                tmpHour = tmpHour.prevHour;
+                if (Day.workerIsAssignedToHour(worker, tmpHour)) {
                     if (!stopCountBefore) {
                         workerResult.countinuousHour++;
                     }
@@ -148,9 +150,11 @@ public class Week {
                     stopCountBefore = true;
                 }
             }
+            tmpHour = hourToManipulate;
             boolean stopCountAfter = false;
-            for (int i = hourIdx; i < day.hours.size(); i++) {
-                if (Day.workerIsAssignedToHour(worker, (Hour) day.hours.get(i))) {
+            while (tmpHour.nextHour != null) {
+                tmpHour = tmpHour.nextHour;
+                if (Day.workerIsAssignedToHour(worker, tmpHour)) {
                     if (!stopCountAfter) {
                         workerResult.countinuousHour++;
                     }

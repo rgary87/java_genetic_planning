@@ -3,6 +3,7 @@
  */
 package fr.rgary.genome;
 
+import fr.rgary.exception.WorkerException;
 import fr.rgary.genome.enums.DaysOfWeek;
 
 import java.util.ArrayList;
@@ -19,9 +20,11 @@ public class Day {
 
     public int hoursCount;
     public DaysOfWeek dayOfWeek;
-    protected List<Hour> hours = new ArrayList<>();
+    public List<Hour> hours = new ArrayList<>();
+    public Week week;
 
-    public Day(final DaysOfWeek dayOfWeek) {
+    public Day(final DaysOfWeek dayOfWeek, final Week pWeek) {
+        this.week = pWeek;
         this.dayOfWeek = dayOfWeek;
         Hour hour0 = new Hour(this, 0, null);
         Hour hour1 = new Hour(this, 1, hour0);
@@ -220,7 +223,7 @@ public class Day {
     }
 
     public Day copyMe(final Day that) {
-        Day day = new Day(that.dayOfWeek);
+        Day day = new Day(that.dayOfWeek, that.week);
         day.hours = new ArrayList<>(15);
         Hour prevHour = null;
         for (final Hour hour : that.hours) {
@@ -266,19 +269,18 @@ public class Day {
         return true;
     }
 
-    public Slot hourHasOpenSlotForWorker(final Hour hour, final Worker worker) {
-        Slot result = null;
+    public Slot hourHasOpenSlotForWorker(final Hour hour, final Worker worker){
         for (final Slot slot : hour.slots) {
             if (slot.worker == null) {
-                result = slot;
+                return slot;
             } else if (slot.worker.equals(worker)) {
                 return null;
             }
         }
-        return result;
+        return null;
     }
 
-    public boolean setWorkerRecursively(final Hour startHour, final Worker pWorker, int minContinuousHours) {
+    public boolean setWorkerRecursively(final Hour startHour, final Worker pWorker, int minContinuousHours)  {
         return this.setWorkerRecursively(startHour, pWorker, minContinuousHours, 9, 0);
     }
 

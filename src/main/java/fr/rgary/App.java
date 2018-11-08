@@ -3,10 +3,15 @@
  */
 package fr.rgary;
 
+import fr.rgary.exception.WorkerException;
 import fr.rgary.genome.DNA;
+import fr.rgary.genome.Day;
 import fr.rgary.genome.Generator;
+import fr.rgary.genome.Hour;
+import fr.rgary.genome.Week;
 
 
+import java.awt.dnd.DnDConstants;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,15 +20,36 @@ import java.util.List;
  */
 public class App {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World");
-        DNA dna = new DNA();
-        List<DNA> dnaList = new ArrayList<>(100_000_000);
-        Long startTime = System.currentTimeMillis();
-        for (int i = 0; i < 100_000_000; i++) {
-            dnaList.add(Generator.generate());
+    public static void printPhenotype(final DNA pDNA) {
+//        System.out.printf("DNA: %n");
+        for (Week week : pDNA.weeks) {
+//            System.out.printf("Week: %n");
+            for (Day day : week.days) {
+//                System.out.printf("\tDay:%n");
+                for (Hour hour : day.hours) {
+//                    System.out.printf("\t\t%s%n", hour.slots);
+                    System.out.printf("");
+                }
+            }
         }
-        System.out.printf("Took: %dms%n", System.currentTimeMillis() - startTime);
+    }
+
+
+    public static void main(String[] args) {
+        List<DNA> dnaList;
+        for (int j = 0; j < 100; j++) {
+            Long startTime = System.currentTimeMillis();
+            dnaList = new ArrayList<>(100_000);
+            for (int i = 0; i < 100_000; i++) {
+                DNA dna = null;
+                dna = Generator.generate();
+                dnaList.add(dna);
+            }
+            System.out.printf("Took: %dms%n", System.currentTimeMillis() - startTime);
+            for (DNA dna : dnaList) {
+                printPhenotype(dna);
+            }
+        }
     }
 
 }
