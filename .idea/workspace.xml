@@ -2,21 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68fadcce-848f-45af-b59f-517f9011bfb1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/DNA.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Generator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Slot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/enums/DaysOfWeek.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/enums/Origin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/fitness/Fitness.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/fitness/FitnessValues.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/fr/rgary/genome/fitness/FitnessValuesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/rgary/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/DNA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/DNA.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Day.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Generator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Hour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Hour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Slot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Slot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Week.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Week.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Worker.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -40,27 +32,27 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="7539" />
+          <entry key="java" value="8438" />
           <entry key="xml" value="75" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="7539" />
+          <entry key="JAVA" value="8438" />
           <entry key="XML" value="75" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="1" />
-          <entry key="java" value="42" />
+          <entry key="java" value="43" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Git file" value="1" />
-          <entry key="JAVA" value="42" />
+          <entry key="JAVA" value="43" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -71,7 +63,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.8790627">
+    <splitter split-orientation="vertical" split-proportion="0.7546296">
       <split-first>
         <splitter split-orientation="horizontal" split-proportion="0.83311856">
           <split-first>
@@ -85,11 +77,11 @@
                   </provider>
                 </entry>
               </file>
-              <file pinned="false" current-in-tab="true">
+              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/Day.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="658">
-                      <caret line="309" column="9" lean-forward="true" selection-start-line="309" selection-start-column="9" selection-end-line="309" selection-end-column="9" />
+                    <state relative-caret-position="219">
+                      <caret line="229" column="36" selection-start-line="229" selection-start-column="36" selection-end-line="229" selection-end-column="36" />
                       <folding>
                         <element signature="imports" expanded="true" />
                         <element signature="e#9015#9016#0" expanded="true" />
@@ -102,8 +94,8 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/Week.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="310">
-                      <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+                    <state relative-caret-position="655">
+                      <caret line="194" column="79" selection-start-line="194" selection-start-column="79" selection-end-line="194" selection-end-column="79" />
                       <folding>
                         <element signature="imports" expanded="true" />
                         <element signature="e#5626#5627#0" expanded="true" />
@@ -116,8 +108,23 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/Generator.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="184">
-                      <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+                    <state relative-caret-position="209">
+                      <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+                      <folding>
+                        <element signature="imports" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/App.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="391">
+                      <caret line="25" column="82" selection-start-line="25" selection-start-column="82" selection-end-line="25" selection-end-column="82" />
+                      <folding>
+                        <element signature="imports" expanded="true" />
+                      </folding>
                     </state>
                   </provider>
                 </entry>
@@ -125,8 +132,8 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/DNA.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="408">
-                      <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+                    <state relative-caret-position="374">
+                      <caret line="34" selection-start-line="34" selection-end-line="34" />
                       <folding>
                         <element signature="imports" expanded="true" />
                       </folding>
@@ -137,11 +144,11 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/Slot.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="119">
-                      <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+                    <state relative-caret-position="238">
+                      <caret line="16" selection-start-line="16" selection-end-line="16" />
                       <folding>
-                        <element signature="e#170#171#0" expanded="true" />
-                        <element signature="e#202#203#0" expanded="true" />
+                        <element signature="e#193#194#0" expanded="true" />
+                        <element signature="e#222#223#0" expanded="true" />
                         <element signature="e#180#181#0" expanded="true" />
                         <element signature="e#245#246#0" expanded="true" />
                       </folding>
@@ -161,8 +168,8 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/Hour.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="629">
-                      <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+                    <state relative-caret-position="425">
+                      <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
                     </state>
                   </provider>
                 </entry>
@@ -198,8 +205,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/Worker.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="44">
-                  <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+                <state>
+                  <caret line="24" column="30" lean-forward="true" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
                 </state>
               </provider>
             </entry>
@@ -246,7 +253,6 @@
         <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/App.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/rgary/App.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/daysofweek/Thursday.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/daysofweek/Monday.java" />
@@ -257,13 +263,14 @@
         <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/daysofweek/Friday.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/daysofweek/DaysOfWeek.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/enums/Origin.java" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Week.java" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/DNA.java" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Generator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Slot.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Worker.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Hour.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Week.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Day.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Slot.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/DNA.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/rgary/genome/Generator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/rgary/App.java" />
       </list>
     </option>
   </component>
@@ -656,9 +663,23 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.App">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="fr.rgary.App" />
+      <module name="geneticplanning" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.rgary.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -709,8 +730,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.FitnessValuesTest.fitnessContinuousHoursValues" />
+      <item itemvalue="Application.App" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.App" />
         <item itemvalue="JUnit.FitnessValuesTest.fitnessContinuousHoursValues" />
       </list>
     </recent_temporary>
@@ -726,7 +752,7 @@
       <option name="presentableId" value="Default" />
       <updated>1541513553501</updated>
       <workItem from="1541513557550" duration="1788000" />
-      <workItem from="1541575908642" duration="18229000" />
+      <workItem from="1541575908642" duration="20345000" />
     </task>
     <servers />
   </component>
@@ -745,13 +771,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20017000" />
+    <option name="totallyTimeSpent" value="22133000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1456" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11406995" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11406995" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -759,7 +785,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32955405" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32955405" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39984882" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.37414965" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -782,6 +808,20 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties>
+            <option name="NOTIFY_CAUGHT" value="false" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/DayOfWeek/Monday.java" />
@@ -830,17 +870,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
           <caret line="543" column="6" selection-start-line="543" selection-start-column="6" selection-end-line="543" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="42" lean-forward="true" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-          <folding>
-            <element signature="e#138#139#0" expanded="true" />
-            <element signature="e#187#188#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -963,10 +992,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="352" column="18" selection-start-line="352" selection-start-column="18" selection-end-line="352" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/Week.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        <state relative-caret-position="655">
+          <caret line="194" column="79" selection-start-line="194" selection-start-column="79" selection-end-line="194" selection-end-column="79" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5626#5627#0" expanded="true" />
@@ -975,20 +1011,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/DNA.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/Hour.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="352" column="18" selection-start-line="352" selection-start-column="18" selection-end-line="352" selection-end-column="18" />
+        <state relative-caret-position="425">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -1001,39 +1027,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/Slot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="238">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
-            <element signature="e#170#171#0" expanded="true" />
-            <element signature="e#202#203#0" expanded="true" />
+            <element signature="e#193#194#0" expanded="true" />
+            <element signature="e#222#223#0" expanded="true" />
             <element signature="e#180#181#0" expanded="true" />
             <element signature="e#245#246#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/Generator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/DNA.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+        <state relative-caret-position="374">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/Hour.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/Generator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+        <state relative-caret-position="209">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/genome/Day.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="309" column="9" lean-forward="true" selection-start-line="309" selection-start-column="9" selection-end-line="309" selection-end-column="9" />
+        <state relative-caret-position="219">
+          <caret line="229" column="36" selection-start-line="229" selection-start-column="36" selection-end-line="229" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#9015#9016#0" expanded="true" />
             <element signature="e#9064#9065#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/rgary/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="25" column="82" selection-start-line="25" selection-start-column="82" selection-end-line="25" selection-end-column="82" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

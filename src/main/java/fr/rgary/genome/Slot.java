@@ -8,12 +8,15 @@ package fr.rgary.genome;
  */
 public class Slot {
     public Worker worker = null;
+    public Hour hour = null;
 
-    public Slot() {
+    public Slot(Hour hour) {
+        this.hour = hour;
     }
 
     public Slot(final Slot that) {
         this.worker = that.worker;
+        this.hour = that.hour;
     }
 
     public boolean equals(final Slot that) {

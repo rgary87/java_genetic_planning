@@ -29,7 +29,7 @@ public class DNA {
         weeks = new ArrayList<>();
         for (int i = 0; i < this.weekCount; i++) {
             Week week = new Week();
-            weeks.add(new Week());
+            weeks.add(week);
             for (Day day : week.days) {
                 for (Hour hour : day.hours) {
                     this.slots.addAll(hour.slots);

@@ -186,10 +186,10 @@ public class Week {
         return result;
     }
 
-    public Worker getWorkerWithMostRemainingHoursExcept(final List<String> exceptions) {
+    public Worker getWorkerWithMostRemainingHoursExcept(final List<Worker> exceptions) {
         Worker result = null;
         for (final Worker worker : this.workers) {
-            if (exceptions.contains(worker.name) || worker.remainingHours == 0) {
+            if (exceptions.contains(worker) || worker.remainingHours == 0) {
                 continue;
             }
             if (result == null || result.remainingHours < worker.remainingHours

@@ -23,23 +23,23 @@ public class Day {
 
     public Day(final DaysOfWeek dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
-        Hour hour0 = new Hour(0, null);
-        Hour hour1 = new Hour(1, hour0);
-        Hour hour2 = new Hour(2, hour1);
-        Hour hour3 = new Hour(3, hour2);
-        Hour hour4 = new Hour(4, hour3);
-        Hour hour5 = new Hour(5, hour4);
-        Hour hour6 = new Hour(6, hour5);
-        Hour hour7 = new Hour(7, hour6);
-        Hour hour8 = new Hour(8, hour7);
-        Hour hour9 = new Hour(9, hour8);
-        Hour hour10 = new Hour(10, hour9);
-        Hour hour11 = new Hour(11, hour10);
-        Hour hour12 = new Hour(12, hour11);
-        Hour hour13 = new Hour(13, hour12);
-        Hour hour14 = new Hour(14, hour13);
-        Hour hour15 = new Hour(15, hour14);
-        Hour hour16 = new Hour(16, hour15);
+        Hour hour0 = new Hour(this, 0, null);
+        Hour hour1 = new Hour(this, 1, hour0);
+        Hour hour2 = new Hour(this, 2, hour1);
+        Hour hour3 = new Hour(this, 3, hour2);
+        Hour hour4 = new Hour(this, 4, hour3);
+        Hour hour5 = new Hour(this, 5, hour4);
+        Hour hour6 = new Hour(this, 6, hour5);
+        Hour hour7 = new Hour(this, 7, hour6);
+        Hour hour8 = new Hour(this, 8, hour7);
+        Hour hour9 = new Hour(this, 9, hour8);
+        Hour hour10 = new Hour(this, 10, hour9);
+        Hour hour11 = new Hour(this, 11, hour10);
+        Hour hour12 = new Hour(this, 12, hour11);
+        Hour hour13 = new Hour(this, 13, hour12);
+        Hour hour14 = new Hour(this, 14, hour13);
+        Hour hour15 = new Hour(this, 15, hour14);
+        Hour hour16 = new Hour(this, 16, hour15);
         switch (dayOfWeek) {
             case MONDAY:
                 hour0.initSlots(1);
@@ -224,7 +224,7 @@ public class Day {
         day.hours = new ArrayList<>(15);
         Hour prevHour = null;
         for (final Hour hour : that.hours) {
-            Hour nhour = new Hour(hour.idx, hour.slots.size(), prevHour);
+            Hour nhour = new Hour(day, hour.idx, hour.slots.size(), prevHour);
             prevHour = nhour;
             for (final Slot slot : hour.slots) {
                 nhour.slots.add(new Slot(slot));
@@ -285,6 +285,9 @@ public class Day {
     public boolean setWorkerRecursively(final Hour startHour, final Worker worker, int minContinuousHours, int maxContinuousHours, int recursed) {
         if (recursed == maxContinuousHours) {
             return true;
+        }
+        if (startHour == null) {
+            return minContinuousHours < 1;
         }
         if (worker.remainingHours < 1 && minContinuousHours < 1) {
             return true;
