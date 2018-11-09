@@ -37,6 +37,19 @@ public class Hour {
         this.idx = idx;
     }
 
+    public Hour(final Hour that, final Hour thatPrevHour, final Day thatDay) {
+        this.prevHour = thatPrevHour;
+        if (prevHour != null) {
+            prevHour.nextHour = this;
+        }
+        this.idx = that.idx;
+        this.day = thatDay;
+        this.slots = new ArrayList<>(that.slots.size());
+        for (final Slot slot : that.slots) {
+            this.slots.add(new Slot(slot, this));
+        }
+    }
+
     public void initSlots(int slotCount) {
         this.slots = new ArrayList<>(slotCount);
         for (int i = 0; i < slotCount; i++) {

@@ -28,7 +28,7 @@ public class DNA {
     public DNA() {
         weeks = new ArrayList<>();
         for (int i = 0; i < this.weekCount; i++) {
-            Week week = new Week();
+            Week week = new Week(this);
             weeks.add(week);
             for (Day day : week.days) {
                 for (Hour hour : day.hours) {
@@ -38,16 +38,50 @@ public class DNA {
         }
     }
 
-    public static DNA checkIfViableInterday(final DNA pDNA) {
+    public DNA(final DNA that) {
+        this.idx = that.idx;
+        this.weeks = new ArrayList<>(that.weeks.size());
+        for (final Week week : that.weeks) {
+            this.weeks.add(new Week(week, this));
+        }
+        this.weekCount = this.weeks.size();
+        this.slots = new ArrayList<>(that.slots.size());
+        for (final Week week : this.weeks) {
+            for (Day day : week.days) {
+                for (Hour hour : day.hours) {
+                    this.slots.addAll(hour.slots);
+                }
+            }
+        }
+        this.origin = Origin.MUTATION;
+        this.realOrigin = Origin.MUTATION;
+    }
+
+    public DNA(final List<Week> pWeeks) {
+        this.weeks = new ArrayList<>(pWeeks.size());
+        for (Week week : pWeeks) {
+            this.weeks.add(new Week(week, this));
+        }
+//        this.weeks = pWeeks;
+        this.weekCount = pWeeks.size();
+        for (final Week week : this.weeks) {
+            for (Day day : week.days) {
+                for (Hour hour : day.hours) {
+                    this.slots.addAll(hour.slots);
+                }
+            }
+        }
+    }
+
+    public static void checkIfViableInterday(final DNA pDNA) {
         Week prevWeek = null;
         for (final Week week : pDNA.weeks) {
             if (!week.checkWorkerEveningMorningRule(prevWeek)) {
-                return pDNA;
+                return;
             }
             prevWeek = week;
         }
         pDNA.validInterday = true;
-        return pDNA;
     }
 
     public static DNA checkIfViableForWorkTimePerDay(final DNA pDNA) {
@@ -62,15 +96,35 @@ public class DNA {
         return pDNA;
     }
 
-    public boolean equals(final DNA pO) {
-        if (this.slots.size() != pO.slots.size()) {
+    public String getRepresentation() {
+        StringBuilder sb = new StringBuilder();
+        for (final Slot slot : this.slots) {
+            sb.append(slot.worker.name);
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        StringBuilder sb = new StringBuilder();
+        for (final Slot slot : this.slots) {
+            sb.append(slot.worker.name);
+        }
+        return sb.hashCode();
+    }
+
+    @Override
+    public boolean equals(final Object pO) {
+        if (this == pO) {
+            return true;
+        }
+        if (pO == null || getClass() != pO.getClass()) {
             return false;
         }
-        for (int i = 0; i < this.slots.size(); i++) {
-            if (!this.slots.get(i).equals(pO.slots.get(i))) {
-                return false;
-            }
-        }
-        return true;
+
+        final DNA dna = (DNA) pO;
+
+        return hashCode() == dna.hashCode();
     }
+
 }

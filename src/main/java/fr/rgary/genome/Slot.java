@@ -15,8 +15,13 @@ public class Slot {
     }
 
     public Slot(final Slot that) {
-        this.worker = that.worker;
+        this.worker = new Worker(that.worker);
         this.hour = that.hour;
+    }
+
+    public Slot(final Slot that, final Hour thatHour) {
+        this.worker = new Worker(that.worker);
+        this.hour = thatHour;
     }
 
     public boolean equals(final Slot that) {

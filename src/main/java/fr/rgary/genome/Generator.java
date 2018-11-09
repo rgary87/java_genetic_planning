@@ -50,6 +50,11 @@ public class Generator {
                     prevSlot = openSlot;
                 }
             }
+            openSlot = week.hasAnyDayAnyHourSlotRemaining();
+            while (openSlot != null) {
+                openSlot.worker = week.getRandomWorker();
+                openSlot = week.hasAnyDayAnyHourSlotRemaining();
+            }
         }
     }
 

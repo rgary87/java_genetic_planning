@@ -25,8 +25,9 @@ public class Week {
 
     public ArrayList<Day> days;
     public ArrayList<Worker> workers;
+    public DNA dna;
 
-    public Week() {
+    public Week(final DNA pDNA) {
         this.workers = new ArrayList<>(Arrays.asList(
                 new Worker("Jean", 39),
                 new Worker("Francis", 39),
@@ -46,9 +47,12 @@ public class Week {
                 new Day(SATURDAY, this),
                 new Day(SUNDAY, this)
         ));
+        this.dna = pDNA;
     }
 
-    public Week(final Week that) {
+
+
+    public Week(final Week that, final DNA dna) {
         this.workers = new ArrayList<>(8);
         for (final Worker worker : that.workers) {
             this.workers.add(new Worker(worker));
@@ -56,7 +60,25 @@ public class Week {
 
         this.days = new ArrayList<>(7);
         for (final Day day : that.days) {
-            this.days.add(day.copyMe(day));
+//            this.days.add(day.copyMe(day));
+            this.days.add(new Day(day, this));
+        }
+    }
+
+    public Week(final List<Day> days, final DNA dna) {
+        this.workers = new ArrayList<>(Arrays.asList(
+                new Worker("Jean", 39),
+                new Worker("Francis", 39),
+                new Worker("Michel", 39),
+                new Worker("Paul", 39),
+                new Worker("Alice", 39),
+                new Worker("Ginette", 39),
+                new Worker("Gwenaelle", 39),
+                new Worker("Julie", 25)
+        ));
+        this.days = new ArrayList<>(days.size());
+        for (final Day day : days) {
+            this.days.add(new Day(day, this));
         }
     }
 
@@ -193,11 +215,13 @@ public class Week {
     public Worker getWorkerWithMostRemainingHoursExcept(final List<Worker> exceptions) {
         Worker result = null;
         for (final Worker worker : this.workers) {
-            if (exceptions.contains(worker) || worker.remainingHours == 0) {
+            if (exceptions.contains(worker)) {
                 continue;
             }
+
             if (result == null || result.remainingHours < worker.remainingHours
-                    || (result.remainingHours == worker.remainingHours && ThreadLocalRandom.current().nextInt() % 2 == 0)) {
+//                    || (result.remainingHours == worker.remainingHours && ThreadLocalRandom.current().nextInt() % 2 == 0)
+            ) {
                 result = worker;
             }
         }

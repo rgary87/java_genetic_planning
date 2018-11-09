@@ -8,6 +8,9 @@ package fr.rgary.genome.fitness;
  */
 public class FitnessValues {
 
+    public static final int FITNESS_EMPTY_WORKER_SLOT = -50;
+    public static final int FITNESS_UNDERHOUR_PER_WEEK = -3;
+
     public static int fitnessContinuousHoursValues(final int hourCount) {
         int diff = Math.abs(8 - hourCount);
         if (diff == 0 || diff == 8) {

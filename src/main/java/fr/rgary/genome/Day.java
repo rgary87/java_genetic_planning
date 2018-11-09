@@ -182,6 +182,17 @@ public class Day {
         this.hours = new ArrayList<>(Arrays.asList(hour0, hour1, hour2, hour3, hour4, hour5, hour6, hour7, hour8, hour9, hour10, hour11, hour12, hour13, hour14, hour15, hour16));
     }
 
+    public Day(final Day that, final Week pWeek) {
+        this.dayOfWeek = that.dayOfWeek;
+        this.week = pWeek;
+        Hour prevHour = null;
+        for (final Hour hour : that.hours) {
+            final Hour tmp = new Hour(hour, prevHour, this);
+            this.hours.add(tmp);
+            prevHour = tmp;
+        }
+    }
+
     public static boolean workerIsAssignedToHour(Worker pWorker, Hour pHour) {
         for (final Slot slot : pHour.slots) {
             if (slot.worker.equals(pWorker)) {
@@ -249,19 +260,19 @@ public class Day {
     }
 
     public boolean checkHourCountPerWorker(final List<Worker> pWorkers) {
-        Map<Worker, Integer> workerHourCount = new HashMap<>();
+        Map<String, Integer> workerHourCount = new HashMap<>();
         for (final Worker worker : pWorkers) {
-            workerHourCount.put(worker, 0);
+            workerHourCount.put(worker.name, 0);
         }
         for (final Hour hour : this.hours) {
             for (Slot slot : hour.slots) {
                 if (slot.worker != null) {
-                    int count = workerHourCount.get(slot.worker) + 1;
-                    workerHourCount.replace(slot.worker, count);
+                    int count = workerHourCount.get(slot.worker.name) + 1;
+                    workerHourCount.replace(slot.worker.name, count);
                 }
             }
         }
-        for (Map.Entry<Worker, Integer> entries : workerHourCount.entrySet()) {
+        for (Map.Entry<String, Integer> entries : workerHourCount.entrySet()) {
             if (entries.getValue() > 12) {
                 return false;
             }
@@ -291,10 +302,8 @@ public class Day {
         if (startHour == null) {
             return minContinuousHours < 1;
         }
-        if (worker.remainingHours < 1 && minContinuousHours < 1) {
+        if (minContinuousHours < 1) {
             return true;
-        } else if (worker.remainingHours < 1) {
-            return false;
         }
 
         Slot slot = this.hourHasOpenSlotForWorker(startHour, worker);
@@ -308,8 +317,6 @@ public class Day {
             } else {
                 return true;
             }
-        } else if (minContinuousHours < 1) {
-            return true;
         } else {
             return false;
         }
