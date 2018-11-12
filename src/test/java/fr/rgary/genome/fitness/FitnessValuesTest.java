@@ -16,15 +16,15 @@ public class FitnessValuesTest {
 
     @Test
     public void fitnessContinuousHoursValues() {
-        Assert.assertEquals( 0,     FitnessValues.fitnessContinuousHoursValues(8));
-        Assert.assertEquals( -100,  FitnessValues.fitnessContinuousHoursValues(7));
-        Assert.assertEquals( -200,  FitnessValues.fitnessContinuousHoursValues(6));
-        Assert.assertEquals( -400,  FitnessValues.fitnessContinuousHoursValues(5));
-        Assert.assertEquals( -800,  FitnessValues.fitnessContinuousHoursValues(4));
-        Assert.assertEquals( -1600,  FitnessValues.fitnessContinuousHoursValues(3));
-        Assert.assertEquals( -3200,  FitnessValues.fitnessContinuousHoursValues(2));
-        Assert.assertEquals( -6400,  FitnessValues.fitnessContinuousHoursValues(1));
-        Assert.assertEquals( 0,     FitnessValues.fitnessContinuousHoursValues(0));
+        Assert.assertEquals(0, FitnessValues.fitnessContinuousHoursValues(8));
+        Assert.assertEquals(-100, FitnessValues.fitnessContinuousHoursValues(7));
+        Assert.assertEquals(-200, FitnessValues.fitnessContinuousHoursValues(6));
+        Assert.assertEquals(-400, FitnessValues.fitnessContinuousHoursValues(5));
+        Assert.assertEquals(-800, FitnessValues.fitnessContinuousHoursValues(4));
+        Assert.assertEquals(-1600, FitnessValues.fitnessContinuousHoursValues(3));
+        Assert.assertEquals(-3200, FitnessValues.fitnessContinuousHoursValues(2));
+        Assert.assertEquals(-6400, FitnessValues.fitnessContinuousHoursValues(1));
+        Assert.assertEquals(0, FitnessValues.fitnessContinuousHoursValues(0));
 
     }
 }

@@ -10,10 +10,10 @@ import fr.rgary.genome.Slot;
 import fr.rgary.genome.Week;
 import fr.rgary.genome.Worker;
 import fr.rgary.genome.enums.Origin;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -21,26 +21,26 @@ import java.util.List;
  */
 public class Fitness {
 
+
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LogManager.getLogger(Fitness.class);
+
+
     public static List<DNA> sortDnaPerScore(final List<DNA> pDNAList) {
-//        pDNAList.parallelStream().forEach(dna -> Fitness.calcFitness(dna));
-        for (DNA dna : pDNAList) {
-            calcFitness(dna);
-        }
-        pDNAList.sort(new Comparator<DNA>() {
-            @Override
-            public int compare(final DNA o1, final DNA o2) {
-                return o2.score - o1.score;
-            }
-        });
+        pDNAList.parallelStream().forEach(Fitness::calcFitness);
+        pDNAList.sort((o1, o2) -> o2.score - o1.score);
         return pDNAList;
     }
 
     public static void calcFitness(final DNA pDNA) {
-        pDNA.score = findEmptyWorkerSlot(pDNA);
+        pDNA.resetScore();
+        findEmptyWorkerSlot(pDNA);
         for (final Week week : pDNA.weeks) {
-            pDNA.score = getScorePerWorkerPerWeek(week);
+            getScorePerWorkerPerWeek(week);
         }
-        pDNA.score += countUndertimePerWeek(pDNA);
+        countUndertimePerWeek(pDNA);
         if (pDNA.validInterday) {
             pDNA.score += (20000 * pDNA.weekCount);
         }
@@ -49,48 +49,47 @@ public class Fitness {
         }
     }
 
-    public static int countUndertimePerWeek(final DNA pDNA) {
+    public static void countUndertimePerWeek(final DNA pDNA) {
         int count = 0;
         for (final Week week : pDNA.weeks) {
             for (final Worker worker : week.workers) {
                 count += (worker.remainingHours * FitnessValues.FITNESS_UNDERHOUR_PER_WEEK);
             }
         }
-        return count;
+        pDNA.addScore(count);
     }
 
-    public static int findEmptyWorkerSlot(final DNA pDNA) {
+    public static void findEmptyWorkerSlot(final DNA pDNA) {
         int count = 0;
-        for (final Slot slot: pDNA.slots) {
+        for (final Slot slot : pDNA.slots) {
             if (slot.worker == null) {
                 count += FitnessValues.FITNESS_EMPTY_WORKER_SLOT;
             }
         }
-        return count;
+        pDNA.addScore(count);
     }
 
-    public static int getScorePerWorkerPerWeek(final Week pWeek) {
-        int score = 0;
+    public static void getScorePerWorkerPerWeek(final Week pWeek) {
+        DNA dna = pWeek.dna;
         for (final Worker worker : pWeek.workers) {
             int totalWeekHourCount = 0;
             for (final Day day : pWeek.days) {
                 int totalDayHourCount = 0;
                 int continuousHourCount = 0;
                 for (final Hour hour : day.hours) {
-                    if (day.workerIsAssignedToHour(worker, hour)) {
+                    if (Day.workerIsAssignedToHour(worker, hour)) {
                         totalDayHourCount += 1;
                         continuousHourCount += 1;
                     } else if (continuousHourCount != 0) {
-                        score += FitnessValues.fitnessContinuousHoursValues(continuousHourCount);
+                        dna.addScore(FitnessValues.fitnessContinuousHoursValues(continuousHourCount));
                         continuousHourCount = 0;
                     }
                 }
-                score += FitnessValues.fitnessTotalHoursPerDay(totalDayHourCount);
+                dna.addScore(FitnessValues.fitnessTotalHoursPerDay(totalDayHourCount));
                 totalWeekHourCount += totalDayHourCount;
             }
-            score += FitnessValues.fitnessTotalHoursPerWeek(totalWeekHourCount, worker.baseHourTarget);
+            dna.addScore(FitnessValues.fitnessTotalHoursPerWeek(totalWeekHourCount, worker.baseHourTarget));
         }
-        return score;
     }
 
     public static DNA inheritance(final DNA one, final DNA two) {

@@ -15,6 +15,15 @@ public class Hour {
     public int idx = 0;
     public Day day;
 
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(9 + this.idx).append(": ");
+        for (final Slot slot : this.slots) {
+            sb.append('[').append(slot.toString()).append(']');
+        }
+        return sb.toString();
+    }
+
     public Hour(Day pDay, int idx, int slotCount, Hour pPrevHour) {
         this.slots = new ArrayList<>(slotCount);
         for (int i = 0; i < slotCount; i++) {
@@ -65,5 +74,6 @@ public class Hour {
         }
         return false;
     }
+
 }
 

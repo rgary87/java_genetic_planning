@@ -51,7 +51,6 @@ public class Week {
     }
 
 
-
     public Week(final Week that, final DNA dna) {
         this.workers = new ArrayList<>(8);
         for (final Worker worker : that.workers) {
@@ -63,6 +62,7 @@ public class Week {
 //            this.days.add(day.copyMe(day));
             this.days.add(new Day(day, this));
         }
+        this.dna = dna;
     }
 
     public Week(final List<Day> days, final DNA dna) {
@@ -80,6 +80,7 @@ public class Week {
         for (final Day day : days) {
             this.days.add(new Day(day, this));
         }
+        this.dna = dna;
     }
 
     public Slot hasAnyDayAnyHourSlotRemaining() {
@@ -107,13 +108,13 @@ public class Week {
         }
     }
 
-    public boolean  checkWorkerEveningMorningRule(final Week prevWeek) {
+    public boolean checkWorkerEveningMorningRule(final Week prevWeek) {
         for (final Worker worker : this.workers) {
             Day prevDay = null;
             if (prevWeek != null) {
                 prevDay = prevWeek.days.get(6);
             }
-            for (final Day day :this.days) {
+            for (final Day day : this.days) {
                 if (prevDay == null) {
                     prevDay = day;
                     continue;
@@ -154,11 +155,11 @@ public class Week {
     public Worker getBestWorkerByFitness(Day day, final Hour hourToManipulate) {
         ArrayList<WorkerFitnessResult> results = new ArrayList<>(this.workers.size());
         for (final Worker worker : this.workers) {
-            WorkerFitnessResult workerResult = new WorkerFitnessResult(worker);
-            results.add(workerResult);
             if (Day.workerIsAssignedToHour(worker, hourToManipulate)) {
                 continue;
             }
+            WorkerFitnessResult workerResult = new WorkerFitnessResult(worker);
+            results.add(workerResult);
             boolean stopCountBefore = false;
             Hour tmpHour = hourToManipulate;
             while (tmpHour.prevHour != null) {
@@ -190,7 +191,7 @@ public class Week {
         }
         WorkerFitnessResult bestWorkerResult = results.get(0);
         for (final WorkerFitnessResult workerResult : results) {
-            if (workerResult.value < bestWorkerResult.value
+            if (workerResult.value > bestWorkerResult.value
                     || (workerResult.value == bestWorkerResult.value && ThreadLocalRandom.current().nextInt() % 2 == 0)) {
                 bestWorkerResult = workerResult;
             }
@@ -205,28 +206,27 @@ public class Week {
                 continue;
             }
             if (result == null || result.remainingHours < worker.remainingHours
-                || (result.remainingHours == worker.remainingHours && ThreadLocalRandom.current().nextInt() % 2 == 0)) {
+                    || (result.remainingHours == worker.remainingHours && ThreadLocalRandom.current().nextInt() % 2 == 0)) {
                 result = worker;
             }
         }
         return result;
     }
 
-    public Worker getWorkerWithMostRemainingHoursExcept(final List<Worker> exceptions) {
+
+    public Worker getWorkerWithMostRemainingHoursExcept(final List<String> exceptions) {
         Worker result = null;
         for (final Worker worker : this.workers) {
-            if (exceptions.contains(worker)) {
+            if (exceptions.contains(worker.name)) {
                 continue;
             }
-
-            if (result == null || result.remainingHours < worker.remainingHours
-//                    || (result.remainingHours == worker.remainingHours && ThreadLocalRandom.current().nextInt() % 2 == 0)
-            ) {
+            if (result == null || result.remainingHours < worker.remainingHours) {
                 result = worker;
             }
         }
         return result;
     }
+
 
     private class WorkerFitnessResult {
         public Worker worker;

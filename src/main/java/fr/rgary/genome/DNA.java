@@ -30,8 +30,8 @@ public class DNA {
         for (int i = 0; i < this.weekCount; i++) {
             Week week = new Week(this);
             weeks.add(week);
-            for (Day day : week.days) {
-                for (Hour hour : day.hours) {
+            for (final Day day : week.days) {
+                for (final Hour hour : day.hours) {
                     this.slots.addAll(hour.slots);
                 }
             }
@@ -47,8 +47,8 @@ public class DNA {
         this.weekCount = this.weeks.size();
         this.slots = new ArrayList<>(that.slots.size());
         for (final Week week : this.weeks) {
-            for (Day day : week.days) {
-                for (Hour hour : day.hours) {
+            for (final Day day : week.days) {
+                for (final Hour hour : day.hours) {
                     this.slots.addAll(hour.slots);
                 }
             }
@@ -59,14 +59,14 @@ public class DNA {
 
     public DNA(final List<Week> pWeeks) {
         this.weeks = new ArrayList<>(pWeeks.size());
-        for (Week week : pWeeks) {
+        for (final Week week : pWeeks) {
             this.weeks.add(new Week(week, this));
         }
 //        this.weeks = pWeeks;
         this.weekCount = pWeeks.size();
         for (final Week week : this.weeks) {
-            for (Day day : week.days) {
-                for (Hour hour : day.hours) {
+            for (final Day day : week.days) {
+                for (final Hour hour : day.hours) {
                     this.slots.addAll(hour.slots);
                 }
             }
@@ -84,22 +84,34 @@ public class DNA {
         pDNA.validInterday = true;
     }
 
-    public static DNA checkIfViableForWorkTimePerDay(final DNA pDNA) {
+    public static void checkIfViableForWorkTimePerDay(final DNA pDNA) {
         for (final Week week : pDNA.weeks) {
             for (final Day day : week.days) {
                 if (!day.checkHourCountPerWorker(week.workers)) {
-                    return pDNA;
+                    pDNA.validWorkerTimePerDay = false;
+                    return;
                 }
             }
         }
         pDNA.validWorkerTimePerDay = true;
-        return pDNA;
+    }
+
+    public synchronized void addScore(int pScore) {
+        this.score += pScore;
+    }
+
+    public synchronized void resetScore() {
+        this.score = 0;
     }
 
     public String getRepresentation() {
         StringBuilder sb = new StringBuilder();
         for (final Slot slot : this.slots) {
-            sb.append(slot.worker.name);
+            if (slot.worker == null) {
+                sb.append("null");
+            } else {
+                sb.append(slot.worker.name);
+            }
         }
         return sb.toString();
     }

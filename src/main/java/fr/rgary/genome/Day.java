@@ -3,7 +3,6 @@
  */
 package fr.rgary.genome;
 
-import fr.rgary.exception.WorkerException;
 import fr.rgary.genome.enums.DaysOfWeek;
 
 import java.util.ArrayList;
@@ -193,15 +192,6 @@ public class Day {
         }
     }
 
-    public static boolean workerIsAssignedToHour(Worker pWorker, Hour pHour) {
-        for (final Slot slot : pHour.slots) {
-            if (slot.worker.equals(pWorker)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static int getHoursCountBetweenDays(final Hour currentDayHour, final Hour prevDayHour) {
         if (prevDayHour == null || currentDayHour == null) {
             return Integer.MAX_VALUE;
@@ -212,6 +202,9 @@ public class Day {
     public static Hour getFirstHourForWorker(final Day pDay, final Worker pWorker) {
         for (final Hour hour : pDay.hours) {
             for (final Slot slot : hour.slots) {
+                if (slot.worker == null) {
+                    continue;
+                }
                 if (slot.worker.equals(pWorker)) {
                     return hour;
                 }
@@ -225,12 +218,27 @@ public class Day {
         while (li.hasPrevious()) {
             Hour hour = (Hour) li.previous();
             for (final Slot slot : hour.slots) {
+                if (slot.worker == null) {
+                    continue;
+                }
                 if (slot.worker.equals(pWorker)) {
                     return hour;
                 }
             }
         }
         return null;
+    }
+
+    public static boolean workerIsAssignedToHour(Worker pWorker, Hour pHour) {
+        for (final Slot slot : pHour.slots) {
+            if (slot.worker == null) {
+                continue;
+            }
+            if (slot.worker.equals(pWorker)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Day copyMe(final Day that) {
@@ -265,14 +273,14 @@ public class Day {
             workerHourCount.put(worker.name, 0);
         }
         for (final Hour hour : this.hours) {
-            for (Slot slot : hour.slots) {
+            for (final Slot slot : hour.slots) {
                 if (slot.worker != null) {
                     int count = workerHourCount.get(slot.worker.name) + 1;
                     workerHourCount.replace(slot.worker.name, count);
                 }
             }
         }
-        for (Map.Entry<String, Integer> entries : workerHourCount.entrySet()) {
+        for (final Map.Entry<String, Integer> entries : workerHourCount.entrySet()) {
             if (entries.getValue() > 12) {
                 return false;
             }
@@ -280,7 +288,10 @@ public class Day {
         return true;
     }
 
-    public Slot hourHasOpenSlotForWorker(final Hour hour, final Worker worker){
+    public Slot hourHasOpenSlotForWorker(final Hour hour, final Worker worker) {
+        if (workerIsAssignedToHour(worker, hour)) {
+            return null;
+        }
         for (final Slot slot : hour.slots) {
             if (slot.worker == null) {
                 return slot;
@@ -291,7 +302,7 @@ public class Day {
         return null;
     }
 
-    public boolean setWorkerRecursively(final Hour startHour, final Worker pWorker, int minContinuousHours)  {
+    public boolean setWorkerRecursively(final Hour startHour, final Worker pWorker, int minContinuousHours) {
         return this.setWorkerRecursively(startHour, pWorker, minContinuousHours, 9, 0);
     }
 
@@ -302,7 +313,7 @@ public class Day {
         if (startHour == null) {
             return minContinuousHours < 1;
         }
-        if (minContinuousHours < 1) {
+        if (minContinuousHours < 1 && worker.remainingHours < 1) {
             return true;
         }
 
@@ -317,6 +328,8 @@ public class Day {
             } else {
                 return true;
             }
+        } else if (minContinuousHours < 1) {
+            return true;
         } else {
             return false;
         }

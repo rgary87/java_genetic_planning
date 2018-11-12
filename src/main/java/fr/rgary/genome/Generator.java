@@ -35,25 +35,21 @@ public class Generator {
         for (final Week week : dna.weeks) {
             Worker worker = week.getWorkerWithMostRemainingHours();
             Slot openSlot = week.hasAnyDayAnyHourSlotRemaining();
-            List<Worker> exceptionWorker = new ArrayList<>();
-            Slot prevSlot = openSlot;
+            List<String> exceptionWorker = new ArrayList<>();
             while (worker != null && worker.remainingHours >= minContinuousHours && openSlot != null) {
                 if (!openSlot.hour.day.setWorkerRecursively(openSlot.hour, worker, minContinuousHours)) {
-                    exceptionWorker.add(worker);
+                    exceptionWorker.add(worker.name);
                     worker = week.getWorkerWithMostRemainingHoursExcept(exceptionWorker);
                 } else {
                     worker = week.getWorkerWithMostRemainingHours();
                 }
-                openSlot = week.hasAnyDayAnyHourSlotRemaining();
-                if (!prevSlot.equals(openSlot)) {
-                    exceptionWorker = new ArrayList<>();
-                    prevSlot = openSlot;
+                if (exceptionWorker.size() == 8) {
+                    int i = 0;
                 }
-            }
-            openSlot = week.hasAnyDayAnyHourSlotRemaining();
-            while (openSlot != null) {
-                openSlot.worker = week.getRandomWorker();
-                openSlot = week.hasAnyDayAnyHourSlotRemaining();
+                if (openSlot.worker != null) {
+                    exceptionWorker = new ArrayList<>();
+                    openSlot = week.hasAnyDayAnyHourSlotRemaining();
+                }
             }
         }
     }

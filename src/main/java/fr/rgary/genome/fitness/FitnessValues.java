@@ -21,6 +21,7 @@ public class FitnessValues {
             res *= 2;
         }
         return res;
+
     }
 
     public static int fitnessTotalHoursPerDay(final int hourCount) {

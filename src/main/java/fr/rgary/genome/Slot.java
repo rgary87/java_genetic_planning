@@ -15,12 +15,16 @@ public class Slot {
     }
 
     public Slot(final Slot that) {
-        this.worker = new Worker(that.worker);
+        if (that.worker != null) {
+            this.worker = new Worker(that.worker);
+        }
         this.hour = that.hour;
     }
 
     public Slot(final Slot that, final Hour thatHour) {
-        this.worker = new Worker(that.worker);
+        if (that.worker != null) {
+            this.worker = new Worker(that.worker);
+        }
         this.hour = thatHour;
     }
 
@@ -34,7 +38,7 @@ public class Slot {
         if (this.worker == null && that.worker != null) {
             return false;
         }
-        if (this.worker == null && that.worker  == null) {
+        if (this.worker == null && that.worker == null) {
             return true;
         }
         return this.worker.name.equals(that.worker.name);
@@ -42,6 +46,6 @@ public class Slot {
 
     @Override
     public String toString() {
-        return worker!= null ? worker.name : "NULL";
+        return worker != null ? worker.name : "NULL";
     }
 }
