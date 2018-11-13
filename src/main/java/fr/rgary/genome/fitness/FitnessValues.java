@@ -54,14 +54,20 @@ public class FitnessValues {
 
     public static int fitnessTotalHoursPerWeek(final int hourCount, final int workerHourCount) {
         int difference = Math.abs(workerHourCount - hourCount);
-        if (difference < 3) {
-            return -50;
-        } else if (difference < 6) {
+        if (difference == 0) {
+            return 0;
+        } else if (difference < 2) {
+            return -100;
+        } else if (difference < 4) {
             return -200;
-        } else if (difference < 9) {
+        } else if (difference < 6) {
+            return -400;
+        } else if (difference < 8) {
             return -800;
+        } else if (difference < 10) {
+            return -1600;
         } else if (difference < 12) {
-            return -2400;
+            return -3200;
         }
         return -10000;
     }

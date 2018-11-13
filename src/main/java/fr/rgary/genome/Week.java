@@ -29,14 +29,14 @@ public class Week {
 
     public Week(final DNA pDNA) {
         this.workers = new ArrayList<>(Arrays.asList(
-                new Worker("Jean", 39),
-                new Worker("Francis", 39),
-                new Worker("Michel", 39),
-                new Worker("Paul", 39),
-                new Worker("Alice", 39),
-                new Worker("Ginette", 39),
-                new Worker("Gwenaelle", 39),
-                new Worker("Julie", 25)
+                new Worker("Jean",     '1', 39),
+                new Worker("Francis",  '2', 39),
+                new Worker("Michel",   '3', 39),
+                new Worker("Paul",     '4', 39),
+                new Worker("Alice",    '5', 39),
+                new Worker("Ginette",  '6', 39),
+                new Worker("Gwenaelle",'7', 39),
+                new Worker("Julie",    '8', 25)
         ));
         this.days = new ArrayList<>(Arrays.asList(
                 new Day(MONDAY, this),
@@ -67,14 +67,14 @@ public class Week {
 
     public Week(final List<Day> days, final DNA dna) {
         this.workers = new ArrayList<>(Arrays.asList(
-                new Worker("Jean", 39),
-                new Worker("Francis", 39),
-                new Worker("Michel", 39),
-                new Worker("Paul", 39),
-                new Worker("Alice", 39),
-                new Worker("Ginette", 39),
-                new Worker("Gwenaelle", 39),
-                new Worker("Julie", 25)
+                new Worker("Jean",      '1', 39),
+                new Worker("Francis",   '2', 39),
+                new Worker("Michel",    '3', 39),
+                new Worker("Paul",      '4', 39),
+                new Worker("Alice",     '5', 39),
+                new Worker("Ginette",   '6', 39),
+                new Worker("Gwenaelle", '7', 39),
+                new Worker("Julie",     '8', 25)
         ));
         this.days = new ArrayList<>(days.size());
         for (final Day day : days) {

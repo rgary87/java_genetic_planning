@@ -8,17 +8,20 @@ package fr.rgary.genome;
  */
 public class Worker {
     public final String name;
+    public final char idx;
     public int remainingHours;
     public int baseHourTarget;
 
-    public Worker(final String pName, final int pRemainingHours) {
+    public Worker(final String pName, final char idx, final int pRemainingHours) {
         this.name = pName;
+        this.idx = idx;
         remainingHours = pRemainingHours;
         baseHourTarget = pRemainingHours;
     }
 
     public Worker(final Worker that) {
         this.name = that.name;
+        this.idx = that.idx;
         this.remainingHours = that.remainingHours;
         this.baseHourTarget = that.baseHourTarget;
     }

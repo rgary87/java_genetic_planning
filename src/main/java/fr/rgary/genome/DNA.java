@@ -3,6 +3,7 @@
  */
 package fr.rgary.genome;
 
+import com.google.common.hash.Hashing;
 import fr.rgary.genome.enums.Origin;
 
 import java.util.ArrayList;
@@ -104,7 +105,7 @@ public class DNA {
         this.score = 0;
     }
 
-    public String getRepresentation() {
+    public void buildStringRepresentation() {
         StringBuilder sb = new StringBuilder();
         for (final Slot slot : this.slots) {
             if (slot.worker == null) {
@@ -113,7 +114,18 @@ public class DNA {
                 sb.append(slot.worker.name);
             }
         }
-        return sb.toString();
+        this.representation = sb.toString();
+    }
+    public void buildRepresentation() {
+        StringBuilder sb = new StringBuilder();
+        for (final Slot slot : this.slots) {
+            if (slot.worker == null) {
+                sb.append("0");
+            } else {
+                sb.append(slot.worker.idx);
+            }
+        }
+        this.representation = sb.toString();
     }
 
     @Override
