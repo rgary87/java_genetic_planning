@@ -47,23 +47,32 @@ public class LifeCycle {
         List<DNA> result = new ArrayList<>();
 
         /* REBUILD */
-        regenDNAList.add(new ArrayList<>(splittedDNA.get(0)));
+//        regenDNAList.add(new ArrayList<>());
+//        for (int i = 0; i < splittedListSize; i += 100) {
+//            regenDNAList.get(0).addAll(splittedDNA.get(0).subList(0, 100));
+//        }
+//        System.out.printf(" regenDNAList.get(0).size() = %d%n",  regenDNAList.get(0).size());
+        regenDNAList.add(splittedDNA.get(0));
         for (final DNA dna : regenDNAList.get(0)) {
             dna.origin = Origin.PREV_BEST;
         }
 
+//        for (int i = 0; i < Math.round((Math.floor(pDNAList.size() /100f))); i++) {
+//            regenDNAList.get(0).set(i, Mutator.smartMutate(regenDNAList.get(0).get(i)));
+//        }
+
         /* INHERITANCE */
-        regenDNAList.add(inheritance(splittedDNA.get(ThreadLocalRandom.current().nextInt(0, 4)), splittedDNA.get(ThreadLocalRandom.current().nextInt(0, 4))));
-        regenDNAList.add(inheritance(splittedDNA.get(ThreadLocalRandom.current().nextInt(0, 4)), splittedDNA.get(ThreadLocalRandom.current().nextInt(0, 4))));
-        regenDNAList.add(inheritance(regenDNAList.get(1), splittedDNA.get(ThreadLocalRandom.current().nextInt(0, 4))));
-        regenDNAList.add(inheritance(regenDNAList.get(2), splittedDNA.get(ThreadLocalRandom.current().nextInt(0, 4))));
-        regenDNAList.add(inheritance(splittedDNA.get(0), splittedDNA.get(0)));
+        regenDNAList.add(inheritance(splittedDNA.get(ThreadLocalRandom.current().nextInt(0, 2)), splittedDNA.get(ThreadLocalRandom.current().nextInt(0, 2))));
+        regenDNAList.add(inheritance(splittedDNA.get(ThreadLocalRandom.current().nextInt(0, 2)), splittedDNA.get(ThreadLocalRandom.current().nextInt(0, 2))));
+        regenDNAList.add(inheritance(regenDNAList.get(0), splittedDNA.get(ThreadLocalRandom.current().nextInt(0, 2))));
+        regenDNAList.add(inheritance(regenDNAList.get(1), splittedDNA.get(ThreadLocalRandom.current().nextInt(0, 2))));
+        regenDNAList.add(inheritance(regenDNAList.get(0), regenDNAList.get(0)));
 
         /*MUTATION */
         regenDNAList.add(massMutate(regenDNAList.get(0), ThreadLocalRandom.current().nextInt(1, 5)));
+        regenDNAList.add(massMutate(regenDNAList.get(0), ThreadLocalRandom.current().nextInt(1, 5)));
         regenDNAList.add(massMutate(regenDNAList.get(1), ThreadLocalRandom.current().nextInt(1, 5)));
-        regenDNAList.add(massMutate(regenDNAList.get(2), ThreadLocalRandom.current().nextInt(1, 5)));
-        regenDNAList.add(massMutate(regenDNAList.get(3), ThreadLocalRandom.current().nextInt(1, 5)));
+        regenDNAList.add(massMutate(regenDNAList.get(1), ThreadLocalRandom.current().nextInt(1, 5)));
 
         /* REBUILD SINGLE LIST */
         for (final List<DNA> l : regenDNAList) {

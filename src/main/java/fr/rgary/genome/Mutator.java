@@ -4,6 +4,7 @@
 package fr.rgary.genome;
 
 import fr.rgary.genome.enums.Origin;
+import fr.rgary.genome.fitness.Fitness;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -33,4 +34,17 @@ public class Mutator {
         pDNA.realOrigin = Origin.MUTATION;
         return pDNA;
     }
+
+    public static DNA smartMutate(final DNA pDNA) {
+//        for (Slot slot : pDNA.slots) {
+            Slot currentSlot = Fitness.findWorstSlot(pDNA);
+            Hour hour = currentSlot.hour;
+            Day day = hour.day;
+            Week week = day.week;
+            currentSlot.hour.day.setWorkerRecursively(hour, week.getBestWorkerByFitness(day, hour), 1);
+//        }
+        pDNA.origin = Origin.SMART_MUTATION;
+        return pDNA;
+    }
+
 }

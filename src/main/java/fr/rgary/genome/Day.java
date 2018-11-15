@@ -281,7 +281,7 @@ public class Day {
             }
         }
         for (final Map.Entry<String, Integer> entries : workerHourCount.entrySet()) {
-            if (entries.getValue() > 12) {
+            if (entries.getValue() > 11) {
                 return false;
             }
         }
@@ -303,7 +303,7 @@ public class Day {
     }
 
     public boolean setWorkerRecursively(final Hour startHour, final Worker pWorker, int minContinuousHours) {
-        return this.setWorkerRecursively(startHour, pWorker, minContinuousHours, 9, 0);
+        return this.setWorkerRecursively(startHour, pWorker, minContinuousHours, 10, 0);
     }
 
     public boolean setWorkerRecursively(final Hour startHour, final Worker worker, int minContinuousHours, int maxContinuousHours, int recursed) {
@@ -319,10 +319,13 @@ public class Day {
 
         Slot slot = this.hourHasOpenSlotForWorker(startHour, worker);
         if (slot != null) {
+            Worker prevWorker = slot.worker;
+            if (prevWorker != null) prevWorker.remainingHours++;
             slot.worker = worker;
             worker.remainingHours--;
             if (!setWorkerRecursively(startHour.nextHour, worker, minContinuousHours - 1, maxContinuousHours, recursed + 1)) {
-                slot.worker = null;
+                slot.worker = prevWorker;
+                if (prevWorker != null) prevWorker.remainingHours--;
                 worker.remainingHours++;
                 return false;
             } else {

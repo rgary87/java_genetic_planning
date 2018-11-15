@@ -8,12 +8,16 @@ package fr.rgary.genome.fitness;
  */
 public class FitnessValues {
 
+    public static final int VALID_INTERDAY = 10000;
+    public static final int VALID_PER_DAY = 500;
     public static final int FITNESS_EMPTY_WORKER_SLOT = -50;
     public static final int FITNESS_UNDERHOUR_PER_WEEK = -3;
 
     public static int fitnessContinuousHoursValues(final int hourCount) {
         int diff = Math.abs(8 - hourCount);
-        if (diff == 0 || diff == 8) {
+        if (diff == 0) {
+            return 200;
+        } else if (diff == 8) {
             return 0;
         }
         int res = -100;
@@ -28,6 +32,9 @@ public class FitnessValues {
         int diff = Math.abs(8 - hourCount);
         int result;
         switch (diff) {
+            case 0:
+                result = 200;
+                break;
             case 2:
                 result = -100;
                 break;

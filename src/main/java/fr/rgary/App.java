@@ -8,6 +8,7 @@ import fr.rgary.genome.Day;
 import fr.rgary.genome.Generator;
 import fr.rgary.genome.Hour;
 import fr.rgary.genome.Week;
+import fr.rgary.genome.enums.Origin;
 import fr.rgary.genome.fitness.Fitness;
 import fr.rgary.tools.DebugTool;
 
@@ -43,7 +44,7 @@ public class App {
             }
         });
 
-        int popSize = 10000;
+        int popSize = 2000;
         List<DNA> dnaList;
         dnaList = new ArrayList<>(popSize);
         for (int i = 0; i < popSize; i++) {
@@ -63,10 +64,12 @@ public class App {
             dnaList = LifeCycle.lifeCycle(dnaList, j, popSize);
             dnaList = Fitness.sortDnaPerScore(dnaList);
 //            System.out.printf("Score: %d%n", dnaList.get(0).score);
-            if (j % 1 == 0) {
+            if (j % 10 == 0) {
                 for (int i = 0; i < 75; i++) {
                     DNA dna = dnaList.get(i);
-                    System.out.printf("DNA[%-2d]: %-7d | %-14s | %-14s | Built at %-3d | Is inter-day valid %-5b | Is per-day work time valid %-5b %n", i, dna.score, dna.origin, dna.realOrigin, dna.builtAtGen, dna.validInterday, dna.validWorkerTimePerDay);
+                    if (!dna.origin.equals(Origin.PREV_BEST)) System.out.printf("\u001B[31m");
+                    System.out.printf("DNA[%-2d]: %-7d | %-14s | %-14s | Built at %-4d | Is inter-day valid %-5b | Is per-day work time valid %-5b %n", i, dna.score, dna.origin, dna.realOrigin, dna.builtAtGen, dna.validInterday, dna.validWorkerTimePerDay);
+                    if (!dna.origin.equals(Origin.PREV_BEST)) System.out.printf("\u001B[0m");
                 }
                 System.out.printf("1 generations took: %dms | Score at %d: %d | With average duplicate removal: %2f%n", System.currentTimeMillis() - startTime, j, dnaList.get(0).score, DebugTool.getAverageRemovedDuplicate());
                 System.out.printf("%1$s%1$s%1$s%1$s%1$s%1$s%1$s%1$s%1$s%1$s%1$s%1$s%1$s%1$s%n", "======");

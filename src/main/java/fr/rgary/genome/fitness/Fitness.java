@@ -20,8 +20,6 @@ import java.util.List;
  * Class Fitness.
  */
 public class Fitness {
-
-
     /**
      * Logger.
      */
@@ -42,10 +40,10 @@ public class Fitness {
         }
         countUndertimePerWeek(pDNA);
         if (pDNA.validInterday) {
-            pDNA.score += (20000 * pDNA.weekCount);
+            pDNA.score += (FitnessValues.VALID_INTERDAY * pDNA.weekCount);
         }
         if (pDNA.validWorkerTimePerDay) {
-            pDNA.score += (500 * pDNA.weekCount * pDNA.weeks.get(0).days.size());
+            pDNA.score += (FitnessValues.VALID_PER_DAY * pDNA.weekCount * pDNA.weeks.get(0).days.size());
         }
     }
 
@@ -88,6 +86,7 @@ public class Fitness {
                 dna.addScore(FitnessValues.fitnessTotalHoursPerDay(totalDayHourCount));
                 totalWeekHourCount += totalDayHourCount;
             }
+            worker.remainingHours = worker.baseHourTarget - totalWeekHourCount;
             dna.addScore(FitnessValues.fitnessTotalHoursPerWeek(totalWeekHourCount, worker.baseHourTarget));
         }
     }
@@ -111,5 +110,40 @@ public class Fitness {
         renewDna.origin = Origin.INHERITANCE;
         renewDna.realOrigin = Origin.INHERITANCE;
         return renewDna;
+    }
+
+
+    public static Slot findWorstSlot(final DNA dna) {
+        Slot worstSlot = dna.slots.get(0);
+        int worstSlotScore = Integer.MAX_VALUE;
+        for (final Slot slot : dna.slots) {
+            if (slot.worker == null) {
+                return slot;
+            }
+            int continuousHour = 0;
+            Hour tmpHour = slot.hour;
+            while (tmpHour.prevHour != null) {
+                tmpHour = tmpHour.prevHour;
+                if (tmpHour.workerWorksDuringHour(slot.worker)) {
+                    continuousHour++;
+                } else {
+                    break;
+                }
+            }
+            while (tmpHour.nextHour != null) {
+                tmpHour = tmpHour.nextHour;
+                if (tmpHour.workerWorksDuringHour(slot.worker)) {
+                    continuousHour++;
+                } else {
+                    break;
+                }
+            }
+            int tmpScore = FitnessValues.fitnessContinuousHoursValues(continuousHour);
+            if (worstSlotScore > tmpScore) {
+                worstSlot = slot;
+                worstSlotScore = tmpScore;
+            }
+        }
+        return worstSlot;
     }
 }

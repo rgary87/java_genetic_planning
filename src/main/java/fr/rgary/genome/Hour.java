@@ -3,6 +3,8 @@
  */
 package fr.rgary.genome;
 
+import fr.rgary.PrintGenome;
+
 import java.util.ArrayList;
 
 /**
@@ -71,6 +73,21 @@ public class Hour {
             if (slot.worker == null) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    public boolean workerWorksDuringHour(final Worker pWorker) {
+        try {
+            for (Slot slot : this.slots) {
+                if (slot.worker == null) continue;
+                if (slot.worker.name.equals(pWorker.name)) {
+                    return true;
+                }
+            }
+        } catch (NullPointerException pE) {
+            PrintGenome.printWholeGenome(this.day.week.dna);
+            throw pE;
         }
         return false;
     }
