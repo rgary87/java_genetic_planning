@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <springframework.version>4.3.10.RELEASE</springframework.version>
+        <springframework.version>5.2.5.RELEASE</springframework.version>
         <java.source>1.8</java.source>
         <java.target>1.8</java.target>
         <maven.compiler.source>1.8</maven.compiler.source>
